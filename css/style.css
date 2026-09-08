@@ -1,0 +1,297 @@
+/* ==========================================================================
+   RIGIS — style.css
+   Metodología BEM: bloque__elemento--modificador
+   Paleta y tipografías según manual de marca
+   ========================================================================== */
+
+:root {
+    /* Paleta de marca */
+    --color-primario: #1A0F52;   /* PANTONE P 101-8 C */
+    --color-secundario: #4F3EA4; /* PANTONE P 99-15 C */
+    --color-acento: #41AED9;     /* PANTONE P 112-13 C */
+    --color-blanco: #FFFFFF;
+
+    /* Tipografías de marca */
+    --font-heading: 'Nunito', Arial, sans-serif;
+    --font-body: 'Open Sans', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-primario);
+}
+
+/* Selectores de etiqueta base (siguen aplicando salvo que una clase BEM los pise) */
+p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--color-primario);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-weight: 700; /* Nunito Bold */
+    color: var(--color-primario);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-weight: 600; /* Nunito SemiBold */
+    color: var(--color-secundario);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   BLOQUE: header
+   ========================================================================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-family: var(--font-heading);
+    font-weight: 700; /* Nunito Bold */
+    color: var(--color-primario);
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.header__logo {
+    width: 15%;
+    height: 170px;
+}
+
+/* ==========================================================================
+   BLOQUE: menu (nav)
+   ========================================================================== */
+
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-acento);
+}
+
+.menu__list {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.menu__item {
+    font-size: 20px;
+}
+
+.menu__link {
+    text-decoration: none;
+    color: var(--color-primario);
+    font-family: var(--font-heading);
+    font-weight: 600; /* Nunito SemiBold */
+}
+
+.menu__link:hover {
+    text-decoration: underline;
+    color: var(--color-secundario);
+}
+
+/* ==========================================================================
+   BLOQUE: video (presentación institucional)
+   ========================================================================== */
+
+.video {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.video__player {
+    display: block;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   BLOQUE: team (tabla "¿Quiénes somos?")
+   ========================================================================== */
+
+.team {
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 800px;
+    text-align: center;
+}
+
+.team__table {
+    width: 100%;
+    /* border-collapse: collapse; */
+    margin: 0 auto 20px; /* centra la tabla horizontalmente */
+}
+
+.team__header-cell {
+    font-family: var(--font-heading);
+    font-weight: 600; /* Nunito SemiBold */
+    color: var(--color-primario);
+    font-size: 18px;
+    padding: 10px;
+    text-align: left;
+}
+
+.team__cell {
+    font-family: var(--font-body);
+    color: var(--color-primario);
+    font-size: 16px;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Modificadores por carrera de base — tintes suaves de la paleta de marca */
+.team__cell--medicina {
+    background-color: rgba(65, 174, 217, 0.25); /* tinte de --color-acento */
+}
+
+.team__cell--sociologia {
+    background-color: rgba(79, 62, 164, 0.2); /* tinte de --color-secundario */
+}
+
+/* Modificadores por año de residencia (R) — escala de la paleta de marca */
+.team__cell--r3 {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+.team__cell--r2 {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.team__cell--r1 {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+}
+
+/* ==========================================================================
+   BLOQUE: contacto (formulario)
+   ========================================================================== */
+
+.contacto {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacto__label {
+    margin-top: 10px;
+    font-family: var(--font-heading);
+    font-weight: 600; /* Nunito SemiBold */
+    color: var(--color-primario);
+}
+
+.contacto__input,
+.contacto__select,
+.contacto__textarea {
+    padding: 6px;
+    margin-top: 4px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    border: 1px solid var(--color-secundario);
+    border-radius: 4px;
+    color: var(--color-primario);
+}
+
+.contacto__radio-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 4px;
+    font-family: var(--font-body);
+}
+
+.contacto__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.contacto__actions button {
+    font-family: var(--font-heading);
+    font-weight: 700; /* Nunito Bold */
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--color-blanco);
+    background-color: var(--color-secundario);
+}
+
+.contacto__actions button:hover {
+    background-color: var(--color-primario);
+}
+
+.contacto__actions button[type="reset"] {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+}
+
+.contacto__actions button[type="reset"]:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+/* ==========================================================================
+   BLOQUE: footer
+   ========================================================================== */
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    font-family: var(--font-body);
+}
+
+.footer__link {
+    color: var(--color-acento);
+}
+
+.footer__link:hover {
+    color: var(--color-blanco);
+}
+
+.footer__social {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0;
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.footer__social:hover {
+    color: var(--color-primario);
+}
+
+.footer__social-icon {
+    flex-shrink: 0;
+}

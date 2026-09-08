@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>RIGIS Website</title>
+</head>
+
+<body class="body">
+
+    <header class="header">
+
+        <article class="header__title-container">
+            <img src="multimedia/logo.jpg" alt="Logo de la RIGIS" class="header__logo">
+            <h1 class="header__title">Bienvenidxs a la RIGIS</h1>
+            <h2 class="header__subtitle">Residencia Interdisciplinaria de Gestión Integral de la Infomración en Salud Pública</h2>
+        </article> 
+    </header>
+
+    <main>
+        <nav class="menu">
+            <ul class="menu__list">
+                <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#nosotrxs">Nosotrxs</a></li>
+                <li class="menu__item"><a class="menu__link" href="multimedia/programa.pdf" target="_blank">Programa</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#rotaciones">Rotaciones</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+         <article class="video">
+            <video class="video__player" src="multimedia/canva.mp4" controls width="500" height="300" id="nosotrxs"></video>
+        </article>
+    
+  
+        <article>
+            <h2>¿Quiénes somos?</h2>
+            <table class="team__table">
+                <thead>
+                    <tr>
+                        <th class="team__header-cell">Nombre</th>
+                        <th class="team__header-cell">Edad</th>
+                        <th class="team__header-cell">Carrera de base</th>
+                        <th class="team__header-cell">R</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="team__cell">Solange</td>
+                        <td class="team__cell">??</td>
+                        <td class="team__cell team__cell--medicina" rowspan="3">Medicina</td>
+                        <td class="team__cell team__cell--r3">3</td>
+                    </tr>
+                    <tr>
+                        <td class="team__cell">Paloma</td>
+                        <td class="team__cell">32</td>
+                        <td class="team__cell team__cell--r2" rowspan="3">2</td>
+                    </tr>
+                    <tr>
+                        <td class="team__cell">Luisa</td>
+                        <td class="team__cell">30</td>
+                    </tr>
+                    <tr>
+                        <td class="team__cell">Vi</td>
+                        <td class="team__cell">31</td>
+                        <td class="team__cell team__cell--sociologia" rowspan="2">Sociologia</td>
+                    </tr>
+                    <tr>
+                        <td class="team__cell">Agustina</td>
+                        <td class="team__cell">??</td>
+                        <td class="team__cell team__cell--r1">1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+  
+ 
+    <article>
+        <!-- https://formspree.io/forms/xaeywnkl/submissions-->
+        <h2> Podes encontrarnos en IG como <a href="https://www.instagram.com/rigis.gogies/" target="_blank">@rigis.gogies</a></h2>
+        <h2> O mandanos tu mensaje completando el formulario: </h2>
+        
+        <form action="https://formspree.io/f/xaeywnkl" method="POST" id="contacto" autocomplete="off" class="contacto">
+            <!-- 
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" id="fecha" readonly value="<?php echo date('Y-m-d'); ?>">
+            <br> -->
+            <!-- no me esta poniendo la fecha de hoy, no se porque
+             de todas formas el forms trae la fecha y hora de envio asique deprecable -->
+            
+            <label class="contacto__label" for="nombre">Nombre/s:</label>
+                <input class="contacto__input" type="text" name="nombre" id="nombre" minlength="3" maxlength="50" required>
+ 
+                <label class="contacto__label" for="apellido">Apellido/s:</label>
+                <input class="contacto__input" type="text" name="apellido" id="apellido" minlength="3" maxlength="50" required>
+ 
+                <label class="contacto__label" for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input class="contacto__input" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+ 
+                <label class="contacto__label" for="edad">Edad:</label>
+                <input class="contacto__input" type="number" name="edad" id="edad" min="18" required>
+
+            <!--    <label class="contacto__label" for="genero">Género:</label>
+             <select name="genero" id="genero" required>
+                <option value="">Seleccione</option>
+                <option value="1">Masculino</option>
+                <option value="0">Femenino</option>
+                <option value="otro">Otro</option>
+            </select> -->
+            <label class="contacto__label" for="genero">Género:</label>
+                <div class="contacto__radio-group">
+                    <input type="radio" name="genero" id="masculino" value="1">
+                    <label for="masculino">Masculino</label>
+ 
+                    <input type="radio" name="genero" id="femenino" value="0">
+                    <label for="femenino">Femenino</label>
+ 
+                    <input type="radio" name="genero" id="otro" value="otro">
+                    <label for="otro">Otro</label>
+                </div>
+            
+            <label class="contacto__label" for="pais">País de origen:</label>
+                <select class="contacto__select" name="pais" id="pais" required>
+                    <option value="">Seleccione</option>
+                    <option value="1">Argentina</option>
+                    <option value="2">Brasil</option>
+                    <option value="3">Chile</option>
+                    <option value="4">Colombia</option>
+                    <option value="5">México</option>
+                    <option value="6">Perú</option>
+                    <option value="7">Uruguay</option>
+                    <option value="8">Venezuela</option>
+                    <option value="9">Otro</option>
+                </select>
+
+            <label class="contacto__label" for="email">Email:</label>
+                <input class="contacto__input" type="email" name="email" id="email" required>
+ 
+                <label class="contacto__label" for="mensaje">Mensaje:</label>
+                <textarea class="contacto__textarea" name="mensaje" id="mensaje" rows="5" cols="50" required></textarea>
+ 
+                <label class="contacto__label" for="archivo">Adjuntar archivo (opcional):</label>
+                <input class="contacto__input" type="file" name="archivo" id="archivo" accept=".pdf,.doc,.docx,.jpg,.png">
+ 
+                <input type="hidden" name="_next" value="./gracias.html">
+            <!-- esto no me funciono par que no redirija a mi sitio en vez de a la pagina del formulario mail-->
+            <div class="contacto__actions">
+                    <button type="submit">Enviar</button>
+                    <button type="reset">Limpiar Formulario</button>
+            </div>
+        </form>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <!-- Acá estamos dentro del footer-->
+        <p>&copy; 2026 RIGIS Website. All rights reserved.</p>
+        <p><a href="mailto:luisabeccarvarela2@gmail.com">Contacta al desarrollador</a></p>
+    </footer>
+
+</body>
+</html>
