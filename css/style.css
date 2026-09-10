@@ -71,7 +71,7 @@ h2 {
 
 .header__logo {
     width: 15%;
-    height: 170px;
+    
 }
 
 .body {
@@ -142,7 +142,7 @@ h2 {
 }
 
 .team__table {
-    width: 100%;
+    width: 60%;
     /* border-collapse: collapse; */
     margin: 0 auto 20px; /* centra la tabla horizontalmente */
 }
