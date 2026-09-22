@@ -59,7 +59,7 @@ h2 {
 .header {
     text-align: center;
     margin-bottom: 0px;
-    background-color:white;
+    /*background-color:white;*/
 }
 
 .header h1 {
@@ -130,13 +130,13 @@ h2 {
 
 .canva {
     width: 80%;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto; /* Centra el contenedor y mantiene los 20px abajo */
+    text-align: center;
 }
 
 .canva__player {
     display: block;
     margin: 0 auto;
-    text-align:center;
 }
 
 /* ==========================================================================
