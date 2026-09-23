@@ -304,13 +304,25 @@ h2 {
 /* ==========================================================================
    BLOQUE: contacto (formulario)
    ========================================================================== */
+.contacto__container {
+    display: grid;
+    margin-top: 2%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1%;
+}
 
+.mapa_estatico__imagen {
+    margin-top: 6%;
+    width: 100%;
+    height: auto
+    
+}
 .contacto {
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    max-width: 400px;
+    /* max-width: 400px; */
     display: flex;
     flex-direction: column;
 }
@@ -372,6 +384,8 @@ h2 {
     background-color: var(--color-secundario);
     color: var(--color-blanco);
 }
+
+
 
 /* ==========================================================================
    BLOQUE: footer
