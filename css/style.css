@@ -67,8 +67,8 @@ h2 {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
     color: var(--color-primario);
-    font-size: 45px;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 2%;
 }
 
 .header__logo {
@@ -111,7 +111,7 @@ h2 {
 }
 
 .menu__item {
-    font-size: 30px;
+    font-size: 1.5rem;
 }
 
 .menu__link {
@@ -145,92 +145,42 @@ h2 {
    BLOQUE: team (tabla "¿Quiénes somos?")
    ========================================================================== */
 
-.team {
+.rotaciones {
     margin-bottom: 20px;
+    margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    max-width: 50%;
+    max-width: 80%;
     text-align: center;
 }
 
-.team__table {
-    width: 50%;
+.rotaciones__table {
+    width: 80%;
     /* border-collapse: collapse; */
-    margin: 0 auto 20px; /* centra la tabla horizontalmente */
+    margin: 1% auto 1%; /* centra la tabla horizontalmente */
     border-style: solid;
-    border-width: 2px;
-
+    border-width: 0.5%;
 }
 
-.team__header-cell {
+.rotaciones__header-cell {
     font-family: var(--font-heading);
     font-weight: 600; /* Nunito SemiBold */
     color: var(--color-primario);
-    font-size: 18px;
-    padding: 10px;
+    font-size: 1.125rem; /* 18px */
+    padding: 1%;
     text-align: left;
     background-color: white;
 }
 
-.team__cell {
+.rotaciones__cell {
     font-family: var(--font-body);
     color: var(--color-primario);
-    font-size: 16px;
-    padding: 10px;
+    font-size: 1.125rem; /* 18px */
+    padding: 1%;
     text-align: left;
     background-color: white;
 }
 
-/* Modificadores por carrera de base — tintes suaves de la paleta de marca */
-.team__cell--medicina {
-    background-color: rgb(72, 193, 241); /* tinte de --color-acento */
-}
-
-.team__cell--sociologia {
-    background-color: rgb(242, 149, 10); /* tinte de --color-secundario */
-}
-
-/* Modificadores por año de residencia (R) — escala de la paleta de marca */
-.team__cell--r3 {
-    background-color: var(--color-primario);
-    color: var(--color-blanco);
-}
-
-.team__cell--r2 {
-    background-color: var(--color-secundario);
-    color: var(--color-blanco);
-}
-
-.team__cell--r1 {
-    background-color: var(--color-acento);
-    color: var(--color-primario);
-}
-
-/* Layout Principal */
-.team__content {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Adaptabilidad a pantallas chicas */
-    margin-top: 1rem;
-}
-
-.team__table {
-    flex: 1;
-    min-width: 300px;
-    max-width: 50%;
-    border-collapse: collapse;
-}
-
-/* Carrusel Container */
-.carousel__wrapper {
-    position: relative;
-    flex: 1;
-    min-width: 280px;
-    max-width: 350px;
-    margin: 0 auto;
-}
 /* ==========================================================================
    BLOQUE: productos (tarjetas del equipo)
    ========================================================================== */
@@ -378,7 +328,7 @@ h2 {
     padding: 6px;
     margin-top: 4px;
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 1rem;
     border: 1px solid var(--color-secundario);
     border-radius: 4px;
     color: var(--color-primario);

@@ -43,7 +43,7 @@
         </article>
     
   
-        <article id="nosotrxs">
+        <!-- <article id="nosotrxs">
             <h2>¿Quiénes somos? <i class="fa-regular fa-user"></i></h2>
             <table class="team__table">
                 <thead>
@@ -81,11 +81,11 @@
                         <td class="team__cell team__cell--r1">1</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
          
-
+            <article id="nosotrxs">
             <section class="integrantes" id="integrantes">
-            <h2 >Conocé al equipo</h2>
+            <h2> Quiénes somos <i class="fa-regular fa-user"></i> </h2>
 
             <div class="integrantes__grilla">
 
@@ -143,19 +143,56 @@
             </div>
         </section>
         </article>
- 
+
+        <article id="rotaciones">
+            <section>
+            <h2>Rotaciones <i class="fa-solid fa-rotate-right"></i></h2>
+            <p>Durante la residencia, realizamos rotaciones en diferentes áreas de la salud pública, donde adquirimos experiencia práctica y conocimientos especializados. Estas rotaciones nos permiten aplicar lo aprendido en situaciones reales y contribuir al mejoramiento de los sistemas de salud.</p>
+            <table class="rotaciones__table">
+                <thead>
+                    <tr>
+                        <th class="rotaciones__header-cell">Año</th>
+                        <th class="rotaciones__header-cell">Area</th>
+                        <th class="rotaciones__header-cell">Duración</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rotaciones__cell">1er año</td>
+                        <td class="rotaciones__cell">Gerencia de Informatica en Salud - RISIS</td>
+                        <td class="rotaciones__cell" >3 meses</td>
+                    </tr>
+                    <tr>
+                        <td class="rotaciones__cell rotaciones__cell--año" rowspan="3">2do año</td>
+                        <td class="rotaciones__cell">Epidemiología (GO Epidemiología) </td>
+                        <td class="rotaciones__cell" >2 meses</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td class="rotaciones__cell">Análisis y ciencia de datos aplicada al sistema público (Área de datos de gobierno) </td>
+                        <td class="rotaciones__cell" >2 meses</td>
+                    </tr>
+                    <tr>
+                    <td class="rotaciones__cell">Gestión de Información en el área de gobierno (EyC) </td>
+                    <td class="rotaciones__cell" >2 meses</td>
+                    </tr>
+                    <tr>
+                        <td class="rotaciones__cell">3er año</td>
+                        <td class="rotaciones__cell">Rotación electiva </td>
+                        <td class="rotaciones__cell" >hasta 3 meses</td>
+                    </tr>
+                </tbody>
+            </table>    
+        </section>
+        </article>
+
+
     <article id="contacto">
         <!-- https://formspree.io/forms/xaeywnkl/submissions-->
         <h2>  Podes encontrarnos en IG como <a href="https://www.instagram.com/rigis.gogies/" target="_blank">@rigis.gogies</a> <i class="fa-brands fa-instagram"></i> </h2>
         <h2> O mandanos tu mensaje completando el formulario: <i class="fa-regular fa-envelope"></i></h2>
         
         <form action="https://formspree.io/f/xaeywnkl" method="POST"  autocomplete="off" class="contacto">
-            <!-- 
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha" readonly value="<?php echo date('Y-m-d'); ?>">
-            <br> -->
-            <!-- no me esta poniendo la fecha de hoy, no se porque
-             de todas formas el forms trae la fecha y hora de envio asique deprecable -->
             
             <label class="contacto__label" for="nombre">Nombre/s:</label>
                 <input class="contacto__input" type="text" name="nombre" id="nombre" minlength="3" maxlength="50" required>
@@ -169,13 +206,6 @@
                 <label class="contacto__label" for="edad">Edad:</label>
                 <input class="contacto__input" type="number" name="edad" id="edad" min="18" required>
 
-            <!--    <label class="contacto__label" for="genero">Género:</label>
-             <select name="genero" id="genero" required>
-                <option value="">Seleccione</option>
-                <option value="1">Masculino</option>
-                <option value="0">Femenino</option>
-                <option value="otro">Otro</option>
-            </select> -->
             <label class="contacto__label" for="genero">Género:</label>
                 <div class="contacto__radio-group">
                     <input type="radio" name="genero" id="masculino" value="1">
