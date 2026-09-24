@@ -311,10 +311,10 @@ h2 {
     gap: 1%;
 }
 
-.mapa_estatico__imagen {
-    margin-top: 6%;
+.mapa {
     width: 100%;
-    height: auto
+    height: auto;
+    align-self: center;
     
 }
 .contacto {
