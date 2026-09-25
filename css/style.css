@@ -311,12 +311,18 @@ h2 {
     gap: 1%;
 }
 
-.mapa {
-    width: 100%;
-    height: auto;
-    align-self: center;
-    
-}
+
+html {
+    overflow-x: hidden;
+} 
+
+
+@media (max-width: 600px) {
+
+    .contacto__container {
+        grid-template-columns: 1fr; /* una sola columna en vez de dos */
+    }}
+
 .contacto {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -327,6 +333,8 @@ h2 {
     flex-direction: column;
 }
 
+
+
 .contacto__label {
     margin-top: 10px;
     font-family: var(--font-heading);
@@ -334,8 +342,6 @@ h2 {
     color: var(--color-primario);
 }
 
-.contacto__input,
-.contacto__select,
 .contacto__textarea {
     padding: 6px;
     margin-top: 4px;
@@ -384,8 +390,15 @@ h2 {
     background-color: var(--color-secundario);
     color: var(--color-blanco);
 }
-
-
+/* ==========================================================================
+   mapa
+   ========================================================================== */
+.mapa {
+    width: 100%;
+    height: auto;
+    align-self: center;
+    
+}
 
 /* ==========================================================================
    BLOQUE: footer
