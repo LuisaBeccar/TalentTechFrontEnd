@@ -32,7 +32,7 @@ p {
     font-family: var(--font-body);
     font-weight: 400;
     color: var(--color-primario);
-    font-size: 16px;
+    font-size: 1.25vw;
     line-height: 1.5;
 }
 
@@ -40,16 +40,16 @@ h1 {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
     color: var(--color-primario);
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 2vw;
+    margin-bottom: 2vw;
 }
 
 h2 {
     font-family: var(--font-heading);
     font-weight: 600; /* Nunito SemiBold */
     color: var(--color-secundario);
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: 1.8vw;
+    margin-bottom: 0.8vw;
 }
 
 /* ==========================================================================
@@ -67,7 +67,7 @@ h2 {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
     color: var(--color-primario);
-    font-size: 2rem;
+    font-size: 2vw;
     margin-bottom: 2%;
 }
 
@@ -79,8 +79,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 20px;
+    gap: 0.7vw;
+    padding: 0.85vw;
 }
 
 .body {
@@ -103,15 +103,15 @@ h2 {
 .menu__list {
     display: flex;
     list-style-type: none;
-    gap: 20px;
+    gap: 0.9vw;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 0.625vw;
 }
 
 .menu__item {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .menu__link {
@@ -146,10 +146,10 @@ h2 {
    ========================================================================== */
 
 .rotaciones {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-bottom: 0.88vw;
+    margin-top: 0.9vw;
+    margin-left: 0.9vw;
+    margin-right: 0.9vw;
     max-width: 80%;
     text-align: center;
 }
@@ -166,7 +166,7 @@ h2 {
     font-family: var(--font-heading);
     font-weight: 600; /* Nunito SemiBold */
     color: var(--color-primario);
-    font-size: 1.125rem; /* 18px */
+    font-size: 1vw; 
     padding: 1%;
     text-align: left;
     background-color: white;
@@ -175,7 +175,7 @@ h2 {
 .rotaciones__cell {
     font-family: var(--font-body);
     color: var(--color-primario);
-    font-size: 1.125rem; /* 18px */
+    font-size: 1vw;
     padding: 1%;
     text-align: left;
     background-color: white;
@@ -187,20 +187,19 @@ h2 {
 
 .integrantes {
     max-width: 95%;
-    /* margin: 40px auto; */
-    padding: 0 20px; 
+    padding: 0 1%; 
     margin-bottom: 2%;
 }
 
 .integrantes__titulo {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 1%;
 }
 
 .integrantes__grilla {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 1.5rem;
     align-items: stretch;
 }
 
@@ -208,7 +207,7 @@ h2 {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 0.85vw;
     border: 2px solid var(--color-primario);
     border-radius: 12px;
     background-color: var(--color-blanco);
@@ -233,20 +232,20 @@ h2 {
     color: var(--color-primario);
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 48px;
+    font-size: 0.9vw;
 }
 
 .integrante__nombre {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
     color: var(--color-primario);
-    font-size: 20px;
+    font-size: 1.25vw;
     margin-bottom: 10px;
 }
 
 .integrante__descripcion {
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 1vw;
     line-height: 1.5;
     color: var(--color-primario);
     margin-bottom: 15px;
@@ -256,7 +255,7 @@ h2 {
 .integrante__rango {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
-    font-size: 20px;
+    font-size: 1.25vw;
     color: var(--color-secundario);
     margin-bottom: 15px;
 }
@@ -272,7 +271,7 @@ h2 {
     cursor: pointer;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 15px;
+    font-size: 0.9vw;
     color: var(--color-blanco);
     background-color: var(--color-secundario);
 }
@@ -297,7 +296,7 @@ h2 {
     color: var(--color-blanco);
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.9vw;
     white-space: nowrap;
 }
 
@@ -311,17 +310,9 @@ h2 {
     gap: 1%;
 }
 
-
 html {
     overflow-x: hidden;
 } 
-
-
-@media (max-width: 600px) {
-
-    .contacto__container {
-        grid-template-columns: 1fr; /* una sola columna en vez de dos */
-    }}
 
 .contacto {
     margin-top: 20px;
@@ -332,8 +323,6 @@ html {
     display: flex;
     flex-direction: column;
 }
-
-
 
 .contacto__label {
     margin-top: 10px;
@@ -346,7 +335,7 @@ html {
     padding: 6px;
     margin-top: 4px;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.9vw;
     border: 1px solid var(--color-secundario);
     border-radius: 4px;
     color: var(--color-primario);
@@ -369,9 +358,9 @@ html {
 .contacto__actions button {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
-    padding: 8px 20px;
+    padding: 0.5vw 1.25vw;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.25vw;
     cursor: pointer;
     color: var(--color-blanco);
     background-color: var(--color-secundario);
@@ -390,6 +379,14 @@ html {
     background-color: var(--color-secundario);
     color: var(--color-blanco);
 }
+
+@media (max-width: 600px) {
+    .contacto__container {
+        grid-template-columns: 1fr; /* una sola columna en vez de dos */
+    }
+    
+    }
+
 /* ==========================================================================
    mapa
    ========================================================================== */
@@ -425,8 +422,8 @@ html {
 .footer__social {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin: 10px 0;
+    gap: 0.5vw;
+    margin: 0.83vw 0;
     color: var(--color-blanco);
     text-decoration: none;
     font-family: var(--font-heading);
