@@ -13,15 +13,6 @@
 
 <body class="body" >
 
-    <header class="header">
-
-        <article class="header__title-container">
-            <img src="multimedia/logo.jpg" alt="Logo de la RIGIS" class="header__logo">
-            <h1 class="header__subtitle">Residencia Interdisciplinaria de Gestión Integral de la Infomración en Salud Pública</h1>
-        </article> 
-    </header>
-
-    <main>
         <nav class="menu">
             <ul class="menu__list">
                 <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
@@ -29,11 +20,21 @@
                 <li class="menu__item"><a class="menu__link" href="multimedia/programa.pdf" target="_blank">Programa</a></li>
                 <li class="menu__item"><a class="menu__link" href="index.html#rotaciones">Rotaciones</a></li>
                 <li class="menu__item"><a class="menu__link" href="index.html#contacto">Contacto</a></li>
-                <li class="menu__item"><a class="menu__link" href="multimedia/dream_team.jpg" target="_blank"><i class="fa-solid fa-star" style="color: rgb(255, 212, 59)"></i>Dream Team</a></li>
+                <li class="menu__item"><a class="menu__link" href="multimedia/dream_team.jpg" target="_blank"><i class="fa-solid fa-star" style="color: #1A0F52"></i>Dream Team</a></li>
 
             </ul>
         </nav>
+ 
+    <header class="header">
+        <section class="hero">
+            <article class="header__title-container">
+                <img src="multimedia/logo_sin_fondo.png" alt="Logo de la RIGIS" class="header__logo">
+                <h1 class="header__subtitle">Residencia Interdisciplinaria de <br> Gestión Integral de la Infomración <br> en Salud Pública</h1>
+            </article> 
+        </section>
+    </header>
 
+    <main>
          <article class="canva">
             <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
                         padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
@@ -44,11 +45,9 @@
             </div>
         </article>
  
-            <section id="nosotrxs" class="integrantes" id="integrantes">
+        <section id="nosotrxs" class="integrantes" id="integrantes">
             <h2> Quiénes somos <i class="fa-regular fa-user"></i> </h2>
-
             <div class="integrantes__grilla">
-
                 
                 <article class="integrante">
                     <img class="integrante__imagen" src="multimedia/solange.jpg" alt="Foto de Solange D'Ambrosio">
@@ -145,7 +144,7 @@
         </section>
 
     
-    <div class="contacto__container">
+    <section class="contacto__container">
         <article id="contacto">
         <!-- https://formspree.io/forms/xaeywnkl/submissions-->
         <h2> Dejanos tu mensaje completando el formulario: <i class="fa-regular fa-envelope"></i></h2>
@@ -199,7 +198,7 @@
                 <label class="contacto__label" for="archivo">Adjuntar archivo (opcional):</label>
                 <input class="contacto__input" type="file" name="archivo" id="archivo" accept=".pdf,.doc,.docx,.jpg,.png">
  
-                <input type="hidden" name="_next" value="multimedia/gracias.html">
+                <input type="hidden" name="_next" value="https://luisabeccar.github.io/TalentTechFrontEnd/multimedia/gracias.html">
             <!-- esto no me funciono par que no redirija a mi sitio en vez de a la pagina del formulario mail-->
             <div class="contacto__actions">
                     <button type="submit">Enviar</button>
@@ -210,15 +209,14 @@
 
         <article class="mapa"> 
          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.90423000137!2d-58.42441382448812!3d-34.60658315764914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca60df957249%3A0xbd27bef1212e1617!2sAv.%20Medrano%20350%2C%20C1179AAF%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1790292083009!5m2!1ses!2sar" 
-         <!-- width="600" 
-         height="450"  -->
+         width="100%" 
+         height="100%"
          style="border: 1px"; 
          allowfullscreen="true" 
          loading="lazy" 
          referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </article>
-    </div>
-</article>
+    </section>
 
 
     </main>
