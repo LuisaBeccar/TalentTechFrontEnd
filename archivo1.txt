@@ -1,0 +1,8 @@
+Este es mi primer archivo creado en rama, 
+1) crear rama con git branch rama1
+2) pararse adentro de la rama: git checkout rama1
+3) crear archivo: en terminal (no en BASH) es con New-Item archivo1.txt ( en BASH seria con touch archivo.txt)
+
+antes de cerrar querria agregar que chequees en un paso cero en que rama estas? con git branch, que en mi caso estaba en main
+
+4) add, commit push y asi se creara la rama y subira a github
