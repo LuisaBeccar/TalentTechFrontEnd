@@ -6,3 +6,5 @@ Este es mi primer archivo creado en rama,
 antes de cerrar querria agregar que chequees en un paso cero en que rama estas? con git branch, que en mi caso estaba en main
 
 4) add, commit push y asi se creara la rama y subira a github
+
+esta rama no estaba subida por lo que apenas quise subirla al push me dice que tengo que usar git push --set-upstream origin rama1
