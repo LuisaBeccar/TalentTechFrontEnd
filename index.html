@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/ab40c3c638.js" crossorigin="anonymous"></script> <!-- en lsa instrucciones de font awsome decia de ponerlo en el head -->
-    <script src="js/script.js" defer></script>
+    <!--<script src="codigo.js" defer></script> se corre cuando corro la pag, no quiero eso, quiero solo cuando aprete el boton-->
     <title>RIGIS Website</title>
 </head>
 
@@ -219,7 +219,12 @@
         </article>
     </section>
     
-
+    <section class="interactivo">
+        <h2>Ejemplo de código en JavaScript en acción <i class="fa-solid fa-code"></i></h2>
+        <p>Hacé click en los botones de abajo para ver ejecutar codigos de javaSript de ejemplo</p>
+        <button  onclick="miAccion1()">Ejemplo 1</button>
+        <button  onclick="miAccion2()">Ejemplo 2</button>
+    </section>
     </main>
 
     <footer class="footer">
@@ -229,6 +234,7 @@
 
       
     </footer>
-
+    
+    <script src="codigo.js" ></script> 
 </body>
 </html>
