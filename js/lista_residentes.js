@@ -6,7 +6,7 @@ const residentes = [
     carrera_base: "Medicina",
     anio_ingreso: 2024,
     nivel: "R3",
-    foto:""
+    foto:"..\multimedia\solange.png"
     },
     {
     id: 2,
@@ -15,7 +15,7 @@ const residentes = [
     carrera_base: "Medicina",
     anio_ingreso: 2025,
     nivel: "R2",
-    foto:""
+    foto:"..\multimedia\paloma.png"
     },
     {
     id: 3,
@@ -24,7 +24,7 @@ const residentes = [
     carrera_base: "Sociologia",
     anio_ingreso: 2025,
     nivel: "R2",
-    foto:""
+    foto:"..\multimedia\vi.png"
     },
     {
     id: 4,
@@ -33,7 +33,7 @@ const residentes = [
     carrera_base: "Medicina",
     anio_ingreso: 2025,
     nivel: "R2",
-    foto:""
+    foto:"..\multimedia\luisa.png"
     },
     {
     id: 5,
@@ -42,6 +42,6 @@ const residentes = [
     carrera_base: "Sociologia",
     anio_ingreso: 2026,
     nivel: "R1",
-    foto:""
+    foto:"https://placehold.co/600x400?text=Foto" // ver como hacer que quede mismo tamaño que las otras fotos
     }
 ]
