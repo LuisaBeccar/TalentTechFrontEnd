@@ -52,13 +52,13 @@ function miAccion2() {
         inesperadas.
         */
 
-        let nombre = prompt("Ingresá tu nombre:");
+        let nombre1 = prompt("Ingresá tu nombre:");
         let edad = parseInt(prompt("Ingresá tu edad:"));
 
         if (isNaN(edad)) {
             console.log("Por favor, ingresá una edad válida.");
         } else {
-            let mensaje = "Hola, " + nombre + ". Tienes " + edad + " años.";
+            let mensaje = "Hola, " + nombre1 + ". Tienes " + edad + " años.";
             console.log(mensaje);
 
             if (edad >= 18) {
