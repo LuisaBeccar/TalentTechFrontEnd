@@ -147,12 +147,12 @@ enviarlos a un servidor, algo fundamental en cualquier aplicación web.
 Ejercicio práctico #2:
 Iterar una lista de productos y mostrarlos con alert() */
 
-let nombre = "Juan";
+let nombre2 = "Juan";
 let correo = "juan@ejemplo.com";
 let mensaje = "Hola, me gustaría información sobre sus servicios.";
 
 function funcion1() {
-    if (nombre !== "" && correo !== "" && mensaje !== "") {
+    if (nombre2 !== "" && correo !== "" && mensaje !== "") {
         console.log("Formulario completo. Listo para enviar.");
     }else {
         console.log("Faltan completar campos obligatorios.");
