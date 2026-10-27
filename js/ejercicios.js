@@ -156,7 +156,7 @@ function funcion1() {
         console.log("Formulario completo. Listo para enviar.");
     }else {
         console.log("Faltan completar campos obligatorios.");
-    }
+    }}
 
 
 /* Ejercicio práctico #2:
@@ -195,3 +195,27 @@ for (let i = 0; i < productos.length; i++) {
 }
 
 console.log("Lista de productos mostrada correctamente.");
+
+// ejemplo de desestructuracion con spread operator.
+
+const catalogoInicial = ["Teclado", "Mouse"];
+const nuevoProducto = "Monitor";
+
+function agregarProducto(catalogo, producto) {
+    const nuevoCatalogo = [...catalogo, producto];
+    return nuevoCatalogo;
+}
+
+const catalogoActualizado = agregarProducto(catalogoInicial, nuevoProducto);
+
+console.log(catalogoInicial); // Imprime ["Teclado", "Mouse"] (¡eloriginal no cambió!)
+console.log(catalogoActualizado); // Imprime ["Teclado", "Mouse", "Monitor"]
+
+
+// ----------------------------
+let nombre = prompt("¿Cuál es tu nombre?");
+if (nombre) {
+let saludo = "Hola, " + nombre.toUpperCase() + "!";
+alert(saludo);
+console.log("El usuario se llama " + nombre);
+}
