@@ -526,3 +526,27 @@ h2 {
     margin: 2% auto;
     padding: 2%;
 }
+
+/* ==========================================================================
+   BLOQUE: dream-team contador 
+   ========================================================================== */
+
+/* Contenedor que mantiene unidas a la estrella y al número */
+.icono-con-badge {
+    position: relative;
+    display: inline-block;
+}
+
+/* El numerito superpuesto sobre la estrella */
+#contador-dream-team {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Lo centra de forma perfecta justo en el medio */
+    color: #ffd43b;                   /* Color amarillo brillante */
+    font-size: 0.70rem;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    pointer-events: none;             /* Evita que interfiera con los clics del enlace */
+}

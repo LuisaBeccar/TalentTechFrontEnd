@@ -138,6 +138,7 @@ const carrito = {
 
         // Calculamos y mostramos el total actualizado
         this.totalMesesExperiencia();
+        actualizarContadorDreamTeam(); // Actualizamos el contador en pantalla
     },
 
     remover: function(residente, botonHtml) {
@@ -155,6 +156,7 @@ const carrito = {
         }
 
         this.totalMesesExperiencia();
+        actualizarContadorDreamTeam(); // Actualizamos el contador en pantalla
     },
 
 
@@ -182,3 +184,25 @@ const carrito = {
 // carrito.agregar(residentes[0]); // Agregamos a Solange
 // carrito.agregar(residentes[1]); // Agregamos a Paloma
 // carrito.totalMesesExperiencia(); // Calculamos el total de meses de experiencia acumulados por los residentes en el carrito
+
+
+// ----------------------------//
+// Función para actualizar el número en pantalla al lado de la estrella
+function actualizarContadorDreamTeam() {
+    const contadorSpan = document.getElementById("contador-dream-team");
+    if (contadorSpan) {
+        const cantidad = carrito.residentes.length;
+        contadorSpan.textContent = cantidad;
+
+        // Si es 0 lo ocultamos, si es mayor a 0 lo mostramos
+        if (cantidad === 0) {
+            contadorSpan.style.display = "none";
+        } else {
+            contadorSpan.style.display = "inline-block";
+        }
+    }
+}
+// Ejecutamos la función al cargar la página para que arranque oculto si está en 0
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarContadorDreamTeam();
+});
