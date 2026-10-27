@@ -1,3 +1,20 @@
+function calcularMesesDesde(fechaIngreso) {
+    const ingreso = new Date(fechaIngreso);
+    const hoy = new Date(); // Toma la fecha actual del sistema
+
+    let aniosDiferencia = hoy.getFullYear() - ingreso.getFullYear();
+    let mesesDiferencia = hoy.getMonth() - ingreso.getMonth();
+    
+    let totalMeses = (aniosDiferencia * 12) + mesesDiferencia;
+
+    // Si todavía no llegó el día del mes actual, restamos un mes
+    if (hoy.getDate() < ingreso.getDate()) {
+        totalMeses--;
+    }
+
+    return totalMeses >= 0 ? totalMeses : 0; // Evita números negativos
+}
+
 const residentes = [
   {
     id: 1,
@@ -5,9 +22,9 @@ const residentes = [
     apellido: "D'Ambrosio",
     carrera_base: "Medicina",
     anio_ingreso: 2024,
+    fecha_ingreso: "2024-09-01",
     nivel: "R3",
-    meses_en_residencia: 26,
-    foto:"..\multimedia\solange.png"
+    foto:  "multimedia/solange.jpg"
     },
     {
     id: 2,
@@ -15,9 +32,9 @@ const residentes = [
     apellido: "Gutierrez",
     carrera_base: "Medicina",
     anio_ingreso: 2025,
+    fecha_ingreso: "2025-09-01",
     nivel: "R2",
-    meses_en_residencia: 14,
-    foto:"..\multimedia\paloma.png"
+    foto:  "multimedia/paloma.jpg"
     },
     {
     id: 3,
@@ -25,9 +42,9 @@ const residentes = [
     apellido: "Beltrán",
     carrera_base: "Sociologia",
     anio_ingreso: 2025,
+    fecha_ingreso: "2025-10-01",
     nivel: "R2",
-    meses_en_residencia: 13,
-    foto:"..\multimedia\vi.png"
+    foto:  "multimedia/vi.jpg" 
     },
     {
     id: 4,
@@ -35,9 +52,9 @@ const residentes = [
     apellido: "Beccar Varela",
     carrera_base: "Medicina",
     anio_ingreso: 2025,
+    fecha_ingreso: "2025-10-01",
     nivel: "R2",
-    meses_en_residencia: 12,
-    foto:"..\multimedia\luisa.png"
+    foto:  "multimedia/luisa.png"
     },
     {
     id: 5,
@@ -45,8 +62,8 @@ const residentes = [
     apellido: "Paredes",
     carrera_base: "Sociologia",
     anio_ingreso: 2026,
+    fecha_ingreso: "2026-08-01",
     nivel: "R1",
-    meses_en_residencia: 2,
-    foto:"https://placehold.co/600x400?text=Foto" // ver como hacer que quede mismo tamaño que las otras fotos
+    foto: ""//"https://placehold.co/600x400?text=Foto" // ver como hacer que quede mismo tamaño que las otras fotos
     }
 ]
