@@ -1,208 +1,154 @@
-
-/*-----------------------
- mensaje de alerta al abrir la página
- -----------------------*/
-alert("Página en construcción. Puede haber funcionalidades que no estén disponibles o que no funcionen correctamente. Disculpe las molestias.");
-
-
-/*-----------------------
- Función para calcular el total de meses de experiencia acumulados por los residentes en el carrito 
- -----------------------*/
-
-// Paso 1: crear funciones puras y específicas.
-// Primero, definimos funciones simples que hacen una sola cosa.
-
-// 1. Función auxiliar para calcular los meses desde una fecha hasta hoy
 function calcularMesesDesde(fechaIngreso) {
     const ingreso = new Date(fechaIngreso);
-    const hoy = new Date(); // Fecha actual (2026)
+    const hoy = new Date();
 
-    let aniosDiferencia = hoy.getFullYear() - ingreso.getFullYear();
-    let mesesDiferencia = hoy.getMonth() - ingreso.getMonth();
-    
-    let totalMeses = (aniosDiferencia * 12) + mesesDiferencia;
+    let totalMeses = (hoy.getFullYear() - ingreso.getFullYear()) * 12
+                   + (hoy.getMonth() - ingreso.getMonth());
 
-    // Si todavía no llegó el día del mes actual, restamos un mes
     if (hoy.getDate() < ingreso.getDate()) {
         totalMeses--;
     }
-
     return totalMeses >= 0 ? totalMeses : 0;
 }
 
-function sumarMeses(listaResidentes) {    // lista_residentes es un array de objetos residentes
+
+
+
+
+
+function sumarMeses(listaResidentes) {
     let totalMeses = 0;
     for (let i = 0; i < listaResidentes.length; i++) {
-        // Obtenemos la fecha de ingreso de este residente
-        const fechaIngreso = listaResidentes[i].fecha_ingreso;
-        
-        // Calculamos sus meses al vuelo y los sumamos al total
-        totalMeses += calcularMesesDesde(fechaIngreso);
+        totalMeses += calcularMesesDesde(listaResidentes[i].fecha_ingreso);
     }
     return totalMeses;
 }
 
 
+
+
+
 function mostrarResidentes() {
     const grilla = document.getElementById("integrantes__grilla");
-    grilla.innerHTML="";
+    grilla.innerHTML = "";
 
     residentes.forEach(residente => {
         const tarjeta = document.createElement("div");
-        tarjeta.classList.add("integrante"); 
+        tarjeta.classList.add("integrante");
 
-        const nombreResidente = residente.nombre || "Residente sin nombre";
-        const mesesCalculados = calcularMesesDesde(residente.fecha_ingreso);
-
-        // --- VALIDAMOS LA FOTO ---
-        let htmlImagen = "";
-        if (residente.foto) {
-            // Si el objeto tiene foto, usamos la clase .integrante__imagen de tu CSS
-            htmlImagen = `<img src="${residente.foto}" alt="Foto de ${nombreResidente}" class="integrante__imagen">`;
-        } else {
-            // Si no tiene foto, usamos tu clase del círculo con la inicial
-            htmlImagen = `
-                <div class="integrante__imagen integrante__imagen--sin-foto" aria-hidden="true">
-                    ${nombreResidente.charAt(0)}${residente.apellido.charAt(0)}
-                </div>
-            `;
-        }
-        // -------------------------
+        const nombre = residente.nombre || "Residente sin nombre";
+        const htmlImagen = residente.foto
+            ? `<img src="${residente.foto}" alt="Foto de ${nombre}" class="integrante__imagen">`
+            : `<div class="integrante__imagen integrante__imagen--sin-foto" aria-hidden="true">${nombre.charAt(0)}${residente.apellido.charAt(0)}</div>`;
 
         tarjeta.innerHTML = `
             ${htmlImagen}
-            <h3 class="integrante__nombre">${nombreResidente} ${residente.apellido}</h3>
+            <h3 class="integrante__nombre">${nombre} ${residente.apellido}</h3>
             <p class="integrante__carrera">${residente.carrera_base}</p>
             <p class="integrante__anio">Año de ingreso: ${residente.anio_ingreso}</p>
-            <p class="integrante__nivel">Actualmente ${residente.nivel} </p> 
-            <button class="integrante__boton" type="button">
-                <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-            </button>
+            <p class="integrante__nivel">Actualmente ${residente.nivel}</p>
+            <button class="integrante__boton" type="button"></button>
         `;
-        // ==========================================
-        // AQUÍ AGREGAMOS LA FUNCIONALIDAD AL BOTÓN
-        // ==========================================
-        const botonAgregar = tarjeta.querySelector(".integrante__boton");
-        
-        botonAgregar.addEventListener("click", () => {
-            // Llamamos al método agregar de tu carrito pasándole este residente específico
-            carrito.agregar(residente, botonAgregar); // Pasamos también el botón para cambiar su estilo
-            
-            // Opcional: Podés llamar también al total para verlo actualizado en la consola
-            carrito.totalMesesExperiencia();
-        });
-        // ==========================================
+
+        const boton = tarjeta.querySelector(".integrante__boton");
+        marcarBoton(boton, carrito.contiene(residente));          // estado inicial (obs. 5)
+        boton.addEventListener("click", () => carrito.agregar(residente, boton)); // sin llamada duplicada (obs. 3)
+
         grilla.appendChild(tarjeta);
     });
 }
 
-// Ejecutamos la función al cargar la página
-mostrarResidentes();
-
-
-
-
-// Paso 2: crear un módulo para el Carrito.
-// Ahora, creamos un objeto que actuará como nuestro "módulo". Este objeto agrupará el
-// estado (los productos) y las acciones (métodos) relacionadas con el carrito
-
+// Cambia el botón con una clase en vez de estilo inline (obs. 6)
+function marcarBoton(boton, agregado) {
+    boton.classList.toggle("integrante__boton--agregado", agregado);
+    boton.innerHTML = agregado
+        ? '<i class="fa-solid fa-check"></i> ¡Agregado!'
+        : '<i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team';
+}
 
 const carrito = {
     residentes: [],
-    agregar: function(residente, botonHtml) {
-        // 1. Verificamos si el residente ya está en el carrito
-        const indice = this.residentes.findIndex(r => r.id === residente.id);
 
-        if (indice !== -1) {
-            // SI YA ESTÁ: Lo removemos del equipo
-            this.remover(residente, botonHtml);
+    contiene(residente) {
+        return this.residentes.some(r => r.id === residente.id);
+    },
+
+    agregar(residente, boton) {
+        if (this.contiene(residente)) {
+            this.remover(residente, boton);
             return;
         }
-        // 2. Verificar si ya se alcanzó el límite máximo de 3 residentes
         if (this.residentes.length >= 3) {
             alert("Solo puedes elegir 3 residentes para tu equipo");
-            return; // Detiene la ejecución
+            return;
         }
-
-        // 2. Si pasa ambas validaciones, lo agregamos al array
         this.residentes.push(residente);
-        console.log(`Se ha agregado a ${residente.nombre} ${residente.apellido} al carrito.`);
-        
-        // CAMBIAMOS EL ESTILO Y TEXTO DEL BOTÓN
-        // ==========================================
-        if (botonHtml) {
-            botonHtml.style.backgroundColor = "#41AED9"; // Un color adjunto en css
-            botonHtml.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
-        }
-        // ==========================================
-
-        // Calculamos y mostramos el total actualizado
-        this.totalMesesExperiencia();
-        actualizarContadorDreamTeam(); // Actualizamos el contador en pantalla
+        marcarBoton(boton, true);
+        this.actualizar();
     },
 
-    remover: function(residente, botonHtml) {
-        // 1. Buscamos y eliminamos al residente del array
-        const indice = this.residentes.findIndex(r => r.id === residente.id);
-        if (indice !== -1) {
-            this.residentes.splice(indice, 1);
-            console.log(`Se ha quitado a ${residente.nombre} del carrito.`);
-        }
-
-        // 2. Restauramos el botón a su estado original
-        if (botonHtml) {
-            botonHtml.style.backgroundColor = ""; // Vuelve al color por defecto del CSS (.integrante__boton)
-            botonHtml.innerHTML = '<i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team';
-        }
-
-        this.totalMesesExperiencia();
-        actualizarContadorDreamTeam(); // Actualizamos el contador en pantalla
+    remover(residente, boton) {
+        this.residentes = this.residentes.filter(r => r.id !== residente.id);
+        marcarBoton(boton, false);
+        this.actualizar();
     },
 
+    totalMesesExperiencia() {
+        return sumarMeses(this.residentes);
+    },
 
-    totalMesesExperiencia: function() {
-        const mesesAcumulados = sumarMeses(this.residentes);
-        console.log(`El total de meses de experiencia acumulados por los residentes en el carrito es: ${mesesAcumulados} meses.`);
-        return mesesAcumulados;
-    }
+    // Guarda, actualiza contador y muestra el total en pantalla (obs. 4 y 5)
+    actualizar() {
+        localStorage.setItem("dreamTeam", JSON.stringify(this.residentes.map(r => r.id)));
+        actualizarContadorDreamTeam();
+        mostrarCarrito();
+        console.log(`Total de meses: ${this.totalMesesExperiencia()}`);
+    },
+
+    cargar() {
+        const ids = JSON.parse(localStorage.getItem("dreamTeam")) || [];
+        this.residentes = residentes.filter(r => ids.includes(r.id));
+    },
+
+    vaciar() {
+        this.residentes = [];
+        mostrarResidentes();   // vuelve todos los botones a "Agregar"
+        this.actualizar();     // guarda [] en localStorage y actualiza contador, total y lista
+    },
 };
 
-// Paso 3: usar el módulo en nuestra aplicación.
-// Vamos a simular que un usuario agrega productos al carrito.
-// Creamos algunos productos de ejemplo (objetos)
-// const laptop = { nombre: "Laptop Gamer", precio: 1500 };
-// const teclado = { nombre: "Teclado Mecánico", precio: 120 };
-// const mouse = { nombre: "Mouse Vertical", precio: 80 };
-// // Usamos los métodos del módulo para interactuar con el carrito
-// carrito.agregar(laptop); // -> "Laptop Gamer" fue agregado al carrito.
-// carrito.agregar(teclado); // -> "Teclado Mecánico" fue agregado al carrito.
-
-// carrito.agregar(mouse); // -> "Mouse Vertical" fue agregado al carrito.
-// // Calculamos y mostramos el total
-// carrito.obtenerTotal(); // -> El total de la compra es: $1700
-
-// carrito.agregar(residentes[0]); // Agregamos a Solange
-// carrito.agregar(residentes[1]); // Agregamos a Paloma
-// carrito.totalMesesExperiencia(); // Calculamos el total de meses de experiencia acumulados por los residentes en el carrito
-
-
-// ----------------------------//
-// Función para actualizar el número en pantalla al lado de la estrella
 function actualizarContadorDreamTeam() {
-    const contadorSpan = document.getElementById("contador-dream-team");
-    if (contadorSpan) {
-        const cantidad = carrito.residentes.length;
-        contadorSpan.textContent = cantidad;
-
-        // Si es 0 lo ocultamos, si es mayor a 0 lo mostramos
-        if (cantidad === 0) {
-            contadorSpan.style.display = "none";
-        } else {
-            contadorSpan.style.display = "inline-block";
-        }
-    }
+    const contador = document.getElementById("contador-dream-team");
+    const cantidad = carrito.residentes.length;
+    contador.textContent = cantidad;
+    contador.style.display = cantidad === 0 ? "none" : "inline-block";
 }
-// Ejecutamos la función al cargar la página para que arranque oculto si está en 0
-document.addEventListener("DOMContentLoaded", () => {
-    actualizarContadorDreamTeam();
-});
+
+
+
+
+
+function mostrarCarrito() {
+    const lista = document.getElementById("lista-carrito");
+    lista.innerHTML = "";
+    carrito.residentes.forEach(r => {
+        const li = document.createElement("li");
+        li.textContent = `${r.nombre} ${r.apellido}`;
+        lista.appendChild(li);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+// Inicio (con defer el DOM ya está listo; no hace falta DOMContentLoaded)
+carrito.cargar();
+mostrarResidentes();
+mostrarCarrito();
+document.getElementById("vaciar-carrito").addEventListener("click", () => carrito.vaciar());

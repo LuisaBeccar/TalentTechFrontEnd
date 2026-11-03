@@ -56,60 +56,16 @@
             <!-- <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQD875EGuhmCaomyvXzZdxdJrChDfNVOUlO7CAmnN91NHhVSJJsrwvaw_4dCLJztWA366L-AnayaEAO/pubembed?start=true&loop=true&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>            </div> -->
         </article>
  
-        <section id="nosotrxs" class="integrantes" id="integrantes">
+        <section id="nosotrxs" class="integrantes">
             <h2> Quiénes somos <i class="fa-regular fa-user"></i> </h2>
-            <div class="integrantes__grilla" id="integrantes__grilla"> <!-- se puede poner un id para poder hacer referencia a este div desde el js, pero no es necesario, ya que puedo usar la clase -->
-                <!-- borrar luego de comprobar que ande-->
-                <!-- <article class="integrante">
-                    <img class="integrante__imagen" src="multimedia/solange.jpg" alt="Foto de Solange D'Ambrosio">
-                    <h3 class="integrante__nombre">Solange D'Ambrosio</h3>
-                    <p class="integrante__rango">Residente de 3er año</p>
-                    <p class="integrante__descripcion">Soy médica, mamá y residente de 2º año. Durante la pandemia entendí que había otras formas de hacer medicina. Conocí profesionales que trabajaban en gestión e información, y algo hizo clic. Hoy apuesto a que la información y los datos en salud sirvan, ordenen y ayuden a tomar mejores decisiones.</p>
-                    <button class="integrante__boton" type="button">
-                        <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-                    </button>
-                </article>
-
-                <article class="integrante">
-                    <img class="integrante__imagen" src="multimedia/paloma.jpg" alt="Foto de Paloma Gutierrez">
-                    <h3 class="integrante__nombre">Paloma Gutierrez</h3>
-                    <p class="integrante__rango">Residente de 2do año</p>
-                    <p class="integrante__descripcion">Soy médica especialista en Medicina General y de Familia. Además desde hace años doy clases de Salud Pública en la Universidad de Buenos Aires. El análisis de la información sanitaria me parece una herramienta fundamental y sumamente valiosa para mejorar la salud pública y garantizar el derecho a la salud de nuestra población.</p>
-                    <button class="integrante__boton" type="button">
-                        <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-                    </button>
-                </article>
-
-                <article class="integrante">
-                    <img class="integrante__imagen" src="multimedia/vi.jpg" alt="Foto de Vi Beltrán">
-                    <h3 class="integrante__nombre">Vi Beltrán</h3>
-                    <p class="integrante__rango">Residente de 2do año</p>
-                    <p class="integrante__descripcion">Me formé en Sociología en la Universidad Nacional de La Plata. Tengo experiencia en docencia secundaria y universitaria, y he participado en proyectos de investigación y extensión. Vengo formándome en ciencia de datos, y esta Resi es una oportunidad para profundizar en el análisis de información aplicado a la salud pública.</p>
-                     <button class="integrante__boton" type="button">
-                       <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-                    </button>
-                </article>
-                
-                <article class="integrante">
-                    <img class="integrante__imagen" src="multimedia/luisa.png" alt="Foto de Luisa Beccar Varela">
-                    <h3 class="integrante__nombre">Luisa Beccar Varela</h3>
-                    <p class="integrante__rango">Residente de 2do año</p>
-                    <p class="integrante__descripcion">La energía no se crea ni se destruye: se transforma. Yo también. Médica de formación, avanzando hacia el mundo de los datos. En continuo aprendizaje, experimento y uso pensamiento crítico y tecnología para resolver problemas complejos, manteniendo siempre el interés por la salud.</p>
-                                        <button class="integrante__boton" type="button">
-                        <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-                    </button>
-                </article>
-                
-                <article class="integrante">
-                    <div class="integrante__imagen integrante__imagen--sin-foto" aria-hidden="true">AP</div>
-                    <h3 class="integrante__nombre">Agustina Paredes</h3>
-                    <p class="integrante__rango">Residente de 1er año</p>
-                    <p class="integrante__descripcion">Se suma este año a la Residencia. Su presentación y su foto están en camino: pronto vas a poder leer acá en qué viene trabajando y qué la trajo al mundo de la información en salud pública.</p>
-                    <button class="integrante__boton" type="button">
-                        <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> Agregar al dream team
-                    </button>
-                </article> -->
+            <div class="integrantes__grilla" id="integrantes__grilla"> </div><!-- se puede poner un id para poder hacer referencia a este div desde el js, pero no es necesario, ya que puedo usar la clase -->
+            <div id="carrito">
+                <h3>Mi Dream Team</h3>  <ul id="lista-carrito"></ul>
+                <button id="vaciar-carrito" type="button">Vaciar Dream Team <span class="icono-tacho">
+                        <i class="fa-solid fa-trash" style="color: #e3d5d5"></i>
+                        <span id="contador-dream-team">0</span></button>
             </div>
+            
         </section>
 
         <section id="rotaciones">
@@ -134,7 +90,6 @@
                         <td class="rotaciones__cell rotaciones__cell--año" rowspan="3">2do año</td>
                         <td class="rotaciones__cell">Epidemiología (GO Epidemiología) </td>
                         <td class="rotaciones__cell" >2 meses</td>
-                    </tr>
                     </tr>
                     <tr>
                         <td class="rotaciones__cell">Análisis y ciencia de datos aplicada al sistema público (Área de datos de gobierno) </td>
@@ -237,16 +192,14 @@
     </main>
 
     <footer class="footer">
-        <p></p><a href="https://www.instagram.com/rigis.gogies/" target="_blank">@rigis.gogies <i class="fa-brands fa-instagram"></i></a> </p>
-        <p><a href="mailto:luisabeccarvarela2@gmail.com">Contacta al desarrollador</a></p>
+        <p><a href="https://www.instagram.com/rigis.gogies/" target="_blank">@rigis.gogies <i class="fa-brands fa-instagram"></i></a></p>        <p><a href="mailto:luisabeccarvarela2@gmail.com">Contacta al desarrollador</a></p>
         <p>&copy; 2026 RIGIS Website. All rights reserved.</p>
 
       
     </footer>
     <script src="js/ejercicios.js" defer></script> 
-    <script src="js/lista_residentes.js" defer></script> <!-- se corre cuando corro la pag, no quiero eso, quiero solo cuando aprete el boton-->
-    <script src="js/index.js" defer></script> <!-- se corre cuando corro
-    <!-- Descarga este archivo de JavaScript en segundo plano mientras vas cargando el resto de la página HTML, pero no lo ejecutes hasta que la página esté completamente leída y lista".-->
-   
+    <script src="js/lista_residentes.js" defer></script> 
+    <script src="js/index.js" defer></script> 
+
 </body>
 </html>
