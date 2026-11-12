@@ -195,7 +195,8 @@ h2 {
    ========================================================================== */
 
 .integrantes {
-    max-width: 95%;
+    max-width: 95%;   
+    margin-top: 3%;
     margin: 0 auto; /* Centra toda la sección en la pantalla */
     padding: 0 1%; 
     margin-bottom: 3%;
@@ -326,11 +327,22 @@ h2 {
 /* ==========================================================================
    BLOQUE: rotaciones
    ========================================================================== */
-
+/* 
 .rotaciones {
     max-width: 80%;
     text-align: center;
     padding: 4% auto 4%;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 1%;
+} */
+
+#rotaciones,
+.contacto__container {
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1%;
 }
 
 .rotaciones__table {
@@ -384,6 +396,9 @@ h2 {
     grid-template-columns: 1fr 1fr;
     gap: 2%;
     align-items: start;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 1%
 }
 
 .contacto {
@@ -618,6 +633,18 @@ h2 {
 
 
 #ejecutar-carrito {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 2px solid var(--color-acento);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-blanco);
+    background-color: var(--color-secundario);
+}
+
+#ver-carrito {
     margin-top: 10px;
     padding: 10px 20px;
     border: 2px solid var(--color-acento);

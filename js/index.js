@@ -202,6 +202,10 @@ if (botonEjecutar) {
     botonEjecutar.addEventListener("click", () => window.open("multimedia/dream_team.jpg", "_blank"));
 }
 
+const botonVerSeleccion = document.getElementById("ver-carrito");
+if (botonVerSeleccion) {
+    botonVerSeleccion.addEventListener("click", () => window.open("ver_carrito.html", "_blank"));
+}
 
 
 // Inicio (con defer el DOM ya está listo; no hace falta DOMContentLoaded)
