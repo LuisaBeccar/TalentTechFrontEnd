@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/ab40c3c638.js" crossorigin="anonymous"></script> <!-- en lsa instrucciones de font awsome decia de ponerlo en el head -->
+    
+     <title>RIGIS Website</title>
+</head>
+
+<body class="body" >
+
+        <nav class="menu">
+            <ul class="menu__list">
+                <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#nosotrxs">Nosotrxs</a></li>
+                <li class="menu__item"><a class="menu__link" href="multimedia/programa.pdf" target="_blank">Programa</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#rotaciones">Rotaciones</a></li>
+                <li class="menu__item"><a class="menu__link" href="index.html#contacto">Contacto</a></li>
+                <li class="menu__item menu__item-dream-team">
+                    <a class="menu__link" href="#multimedia/dream_team.jpg" target="_blank">
+                    <!-- Contenedor relativo para la estrella y el badge -->
+                    <span class="icono-con-badge">
+                        <i class="fa-solid fa-star" style="color: #1A0F52"></i>
+                        <span id="contador-dream-team"></span>
+                         </span>
+                             Dream Team
+                        </a>
+                    </li>
+
+            </ul>
+        </nav>
+ 
+    <header class="header">
+        <section class="hero">
+            <article class="header__title-container">
+                <img src="multimedia/logo_sin_fondo.png" alt="Logo de la RIGIS" class="header__logo">
+                <h1 class="header__subtitle">Residencia Interdisciplinaria de <br> Gestión Integral de la Infomración <br> en Salud Pública</h1>
+            </article> 
+        </section>
+    </header>
+
+    <main>
+      <div id="carrito">
+                <h3>Mi Dream Team</h3>  
+                <ul id="lista-carrito"></ul>
+                <h2 id="total-meses"></h2>
+
+                <button id="vaciar-carrito" type="button">Vaciar Dream Team <span class="icono-tacho">
+                        <i class="fa-solid fa-trash" style="color: #e3d5d5"></i>
+                        <span id="contador-dream-team">0</span></button>
+
+                <button id="ejecutar-carrito" type="button">Llamar Dream Team <span class="icono-paquete">
+                        <i class="fa-solid fa-truck" style="color: #ebee22"></i>
+                        <span id="contador-dream-team">0</span>
+                    </button>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <p><a href="https://www.instagram.com/rigis.gogies/" target="_blank">@rigis.gogies <i class="fa-brands fa-instagram"></i></a></p>        <p><a href="mailto:luisabeccarvarela2@gmail.com">Contacta al desarrollador</a></p>
+        <p>&copy; 2026 RIGIS Website. All rights reserved.</p>
+
+      
+    </footer>
+    <script src="js/ejercicios.js" defer></script> 
+    <script src="js/lista_residentes.js" defer></script> 
+    <script src="js/index.js" defer></script> 
+
+</body>
+</html>

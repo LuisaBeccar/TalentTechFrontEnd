@@ -616,6 +616,29 @@ h2 {
     background-color: var(--color-secundario);
 }
 
-#vaciar-carrito:hover {
+
+#ejecutar-carrito {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 2px solid var(--color-acento);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-blanco);
+    background-color: var(--color-secundario);
+}
+
+#ejecutar-carrito:hover {
     background-color: var(--color-primario);
+}
+
+#carrito_finalizador {
+    background-color: rgba(65, 174, 217, 0.25); /* acento suave, igual que la tarjeta sin foto */
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid var(--color-acento);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    color: var(--color-primario);
 }

@@ -1,3 +1,5 @@
+// para hacer la metrica de meses de experiencia de los residentes seleccionados (precio o valor que tendran pero que no aparecera en la portada sino al final de la compra)
+
 function calcularMesesDesde(fechaIngreso) {
     const ingreso = new Date(fechaIngreso);
     const hoy = new Date();
@@ -11,11 +13,6 @@ function calcularMesesDesde(fechaIngreso) {
     return totalMeses >= 0 ? totalMeses : 0;
 }
 
-
-
-
-
-
 function sumarMeses(listaResidentes) {
     let totalMeses = 0;
     for (let i = 0; i < listaResidentes.length; i++) {
@@ -26,7 +23,7 @@ function sumarMeses(listaResidentes) {
 
 
 
-
+// para mostrar los residentes en la grilla y manejar el carrito de selección
 
 function mostrarResidentes() {
     const grilla = document.getElementById("integrantes__grilla");
@@ -97,37 +94,58 @@ const carrito = {
         return sumarMeses(this.residentes);
     },
 
-    // Guarda, actualiza contador y muestra el total en pantalla (obs. 4 y 5)
-    actualizar() {
-        localStorage.setItem("dreamTeam", JSON.stringify(this.residentes.map(r => r.id)));
-        actualizarContadorDreamTeam();
-        mostrarCarrito();
-        console.log(`Total de meses: ${this.totalMesesExperiencia()}`);
+
+  
+
+    vaciar() {
+        this.residentes = [];
+        this.actualizar();
     },
+
+
+    // Guarda, actualiza contador y muestra el total en pantalla (obs. 4 y 5)
+    // actualizar() {
+    //     localStorage.setItem("dreamTeam", JSON.stringify(this.residentes.map(r => r.id)));
+    //     actualizarContadorDreamTeam();
+    //     mostrarCarrito();
+    //     console.log(`Total de meses: ${this.totalMesesExperiencia()}`);
+    // },
+    actualizar() {
+            localStorage.setItem("dreamTeam", JSON.stringify(this.residentes.map(r => r.id)));
+            refrescarVista();
+        },
 
     cargar() {
         const ids = JSON.parse(localStorage.getItem("dreamTeam")) || [];
         this.residentes = residentes.filter(r => ids.includes(r.id));
     },
 
-    vaciar() {
+    // vaciar() {
+    //     this.residentes = [];
+    //     mostrarResidentes();   // vuelve todos los botones a "Agregar"
+    //     this.actualizar();     // guarda [] en localStorage y actualiza contador, total y lista
+    // },
+       vaciar() {
         this.residentes = [];
-        mostrarResidentes();   // vuelve todos los botones a "Agregar"
-        this.actualizar();     // guarda [] en localStorage y actualiza contador, total y lista
+        this.actualizar();
     },
 };
 
+// function actualizarContadorDreamTeam() {
+//     const contador = document.getElementById("contador-dream-team");
+//     const cantidad = carrito.residentes.length;
+//     contador.textContent = cantidad;
+//     contador.style.display = cantidad === 0 ? "none" : "inline-block";
+// }
 function actualizarContadorDreamTeam() {
     const contador = document.getElementById("contador-dream-team");
+    if (!contador) return;
     const cantidad = carrito.residentes.length;
     contador.textContent = cantidad;
     contador.style.display = cantidad === 0 ? "none" : "inline-block";
 }
 
-
-
-
-
+// no se si dejar esto en la pantalla principal o solo el boton de vaciar 
 function mostrarCarrito() {
     const lista = document.getElementById("lista-carrito");
     lista.innerHTML = "";
@@ -138,17 +156,64 @@ function mostrarCarrito() {
     });
 }
 
+// nuevo mostrar carrito para la pagina de finalizacion
+// function mostrarCarritoFinalizador() {
+//     const lista = document.getElementById("lista-carrito");
+//     lista.innerHTML = "";
+//     carrito.residentes.forEach(r => {
+//         const li = document.createElement("li");
+//         li.textContent = `${r.nombre} ${r.apellido}: tiene ${calcularMesesDesde(r.fecha_ingreso)} meses de experiencia en la RIGIS`;
+//         lista.appendChild(li);
 
+//         const totalMeses = document.createElement("p");
+//         totalMeses.textContent = `Suma total de meses de experiencia del equipo de residentes elegido: ${carrito.totalMesesExperiencia()}`;
+//         lista.appendChild(totalMeses);
+//     });
+// }
 
+function mostrarCarritoFinalizador() {
+    const lista = document.getElementById("lista-carrito");
+    lista.innerHTML = "";
+    carrito.residentes.forEach(r => {
+        const li = document.createElement("li");
+        li.textContent = `${r.nombre} ${r.apellido}: tiene ${calcularMesesDesde(r.fecha_ingreso)} meses de experiencia en la RIGIS`;
+        lista.appendChild(li);
+    });
 
+    const total = document.getElementById("total-meses");
+    if (total) {
+        total.textContent = `Suma total de meses de experiencia del equipo de residentes elegido: ${carrito.totalMesesExperiencia()}`;
+    }
+}
 
+//Nueva función que decide qué mostrar según la página:
+function refrescarVista() {
+    actualizarContadorDreamTeam();
+    if (document.getElementById("integrantes__grilla")) {        // index.html
+        mostrarResidentes();
+        mostrarCarrito();
+    } else if (document.getElementById("lista-carrito")) {       // finalizar_carrito.html
+        mostrarCarritoFinalizador();
+    }
+}
 
-
+const botonEjecutar = document.getElementById("ejecutar-carrito");
+if (botonEjecutar) {
+    botonEjecutar.addEventListener("click", () => window.open("multimedia/dream_team.jpg", "_blank"));
+}
 
 
 
 // Inicio (con defer el DOM ya está listo; no hace falta DOMContentLoaded)
+// carrito.cargar();
+// mostrarResidentes();
+// mostrarCarrito();
+// document.getElementById("vaciar-carrito").addEventListener("click", () => carrito.vaciar());
+
 carrito.cargar();
-mostrarResidentes();
-mostrarCarrito();
-document.getElementById("vaciar-carrito").addEventListener("click", () => carrito.vaciar());
+refrescarVista();
+
+const botonVaciar = document.getElementById("vaciar-carrito");
+if (botonVaciar) {
+    botonVaciar.addEventListener("click", () => carrito.vaciar());
+}
