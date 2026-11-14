@@ -167,15 +167,30 @@ function refrescarVista() {
 }
 
 // para que un boton me lleve a otra pagina html se usa esto y luego tambien para la imagen
+
 const botonEjecutar = document.getElementById("ejecutar-carrito");
 if (botonEjecutar) {
-    botonEjecutar.addEventListener("click", () => window.open("multimedia/dream_team.jpg", "_blank"));
+    botonEjecutar.addEventListener("click", () => {
+        if (carrito.residentes.length === 0) {
+            alert("No has seleccionado a ningún residente para tu Dream Team");
+            return;
+        }
+        window.open("multimedia/dream_team.jpg", "_blank");
+    });
 }
+
 
 const botonVerSeleccion = document.getElementById("ver-carrito");
 if (botonVerSeleccion) {
-    botonVerSeleccion.addEventListener("click", () => window.open("ver_carrito.html", "_blank"));
+botonVerSeleccion.addEventListener("click", () => {
+            if (carrito.residentes.length === 0) {
+            alert("No has seleccionado a ningún residente para tu Dream Team");
+            return;
+        }
+        window.open("ver_carrito.html", "_blank");
+    });
 }
+
 
 
 const botonVaciar = document.getElementById("vaciar-carrito");
