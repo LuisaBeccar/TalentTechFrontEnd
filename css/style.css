@@ -196,8 +196,9 @@ h2 {
 
 .integrantes {
     max-width: 95%;   
+    margin: 0 auto;
     margin-top: 3%;
-    margin: 0 auto; /* Centra toda la sección en la pantalla */
+    margin-bottom: 3%;
     padding: 0 1%; 
     margin-bottom: 3%;
 }
@@ -207,14 +208,7 @@ h2 {
     margin-bottom: 3%;
 }
 
-.integrantes__grilla {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(280px, 1fr));
-    gap: 2vw;
-    align-items: stretch;
-    justify-content: center; /* Centra las tarjetas si sobra espacio (como en la última fila) */
-    justify-items: center;   /* Centra el contenido dentro de cada celda del grid */
-}
+
 
 .integrante {
     position: relative;
@@ -228,6 +222,20 @@ h2 {
     background-color: var(--color-blanco);
     text-align: center;
 }
+
+.integrantes__grilla {
+    display: flex;
+    gap: 2vw;
+    overflow-x: auto;              /* scroll horizontal */
+    scroll-snap-type: x mandatory; /* cada tarjeta "encaja" al deslizar */
+    padding-bottom: 1rem;          /* espacio para la barra de scroll */
+}
+
+.integrantes__grilla .integrante {
+    flex: 0 0 280px;               /* ancho fijo: no se estiran ni se achican */
+    scroll-snap-align: start;
+}
+
 
 .integrante__imagen {
     width: 50%;
@@ -289,7 +297,7 @@ h2 {
     cursor: pointer;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--color-blanco);
     background-color: var(--color-secundario);
     width: 100%; /* Hace que el botón ocupe prolijamente el ancho de la tarjeta en celular */
@@ -301,8 +309,8 @@ h2 {
 
 @media (max-width: 768px) {
     .integrantes__grilla {
-        grid-template-columns: 1fr; /* Una sola columna: cada integrante en su propia fila */
-        justify-items: center;      /* Centra cada tarjeta horizontalmente */
+        grid-template-columns: 1fr;
+        justify-items: center;
     }
 
     .integrante {
@@ -392,13 +400,10 @@ h2 {
    ========================================================================== */
 .contacto__container {
     display: grid;
-    margin-top: 3%;
     grid-template-columns: 1fr 1fr;
     gap: 2%;
     align-items: start;
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 0 1%
+    margin-top: 3%;
 }
 
 .contacto {
@@ -656,9 +661,11 @@ h2 {
     background-color: var(--color-secundario);
 }
 
-#ejecutar-carrito:hover {
+
+#ejecutar-carrito:hover, #ver-carrito:hover, #vaciar-carrito:hover {
     background-color: var(--color-primario);
 }
+
 
 #carrito_finalizador {
     background-color: rgba(65, 174, 217, 0.25); /* acento suave, igual que la tarjeta sin foto */
