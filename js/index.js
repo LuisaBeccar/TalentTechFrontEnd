@@ -94,12 +94,6 @@ const carrito = {
     totalMesesExperiencia() {
         return sumarMeses(this.residentes);
     },
-  
-
-    vaciar() {
-        this.residentes = [];
-        this.actualizar();
-    },
 
 
     // Guarda, actualiza contador y muestra el total en pantalla
@@ -187,7 +181,7 @@ botonVerSeleccion.addEventListener("click", () => {
             alert("No has seleccionado a ningún residente para tu Dream Team");
             return;
         }
-        window.open("ver_carrito.html", "_blank");
+        window.location.href = "ver_carrito.html";
     });
 }
 
@@ -201,3 +195,18 @@ if (botonVaciar) {
 //se llama a las funciones para que se ejecute el codigo al cargar la pagina
 carrito.cargar();
 refrescarVista();
+
+// Recarga el carrito al volver con "Atrás"
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+        carrito.cargar();
+        refrescarVista();
+    }
+});
+
+window.addEventListener("storage", (event) => {
+    if (event.key === "dreamTeam") {
+        carrito.cargar();
+        refrescarVista();
+    }
+});
