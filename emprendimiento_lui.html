@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/ab40c3c638.js" crossorigin="anonymous"></script> <!-- en lsa instrucciones de font awsome decia de ponerlo en el head -->
+    
+     <title>RIGIS Website</title>
+</head>
+
+<body class="body" >
+
+        <nav class="menu" style="background-color: var(--color-acento); padding: 10px;">
+            <ul class="menu__list">
+                <li class="menu__item"><a class="menu__link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver a RIGIS WEBSITE</a></li>
+                <li class="menu__item">
+                    <a class="menu__link" href="#checkout">
+                    <!-- Contenedor relativo para el carrito y el numerito (lo llena js/carrito.js) -->
+                    <span class="icono-con-badge">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="contador-carrito"></span>
+                    </span>
+                        Carrito
+                    </a>
+                </li>
+            </ul>
+        </nav>
+ 
+     <header class="header">
+        <section class="hero">
+            <article class="header__tienda">
+                <h1>Tienda de Emprendimiento Lui</h1>
+                <h2> Esta es una tienda falsa donde los productos fueron traidos por api desde una fuente externa.  </h2>
+
+            </article> 
+        </section>
+    </header>
+
+    <main>
+        <!-- aca se traen los productos de fakestore -->
+        <div id="grilla-productos" class="grilla-productos"></div>
+    
+        <!-- Contenedor checkout del carrito -->
+        <section class="contenedor" id="checkout">
+        <h2 class="titulo-seccion">Finalizar compra</h2>
+
+        <div class="bloque-checkout">
+
+            <!-- Columna 1: lo que hay en el carrito (lo llena js/finalizar.js) -->
+            <section class="resumen-carrito">
+            <h3>Tu carrito</h3>
+            <div id="lista-carrito"></div>
+
+            <p class="total">Total: <span id="total-carrito">$0</span></p>
+            <button class="boton-secundario" onclick="vaciarCarrito(); mostrarCarrito();">
+                <i class="fa-solid fa-trash"></i> Vaciar carrito
+            </button>
+            </section>
+
+            <!-- Columna 2: datos del comprador -->
+            <section class="formulario-compra">
+            <h3>Tus datos</h3>
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Ej: Lionel Messi">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="lio10@mail.com">
+
+            <button class="boton-finalizar" onclick="finalizarCompra()">
+                <i class="fa-solid fa-check"></i> Confirmar compra
+            </button>
+            </section>
+
+        </div>    
+    </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Emprendimiento Luisa Website. All rights reserved.</p>
+
+      
+    </footer>
+    <!-- SweetAlert2: para los carteles (Swal.fire) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- El orden importa: carrito.js tiene funciones que usan los otros dos -->
+    <script src="js/carrito.js" defer></script>
+    <script src="js/productos.js" defer></script>
+    <script src="js/finalizar.js" defer></script>
+
+</body>
+</html>

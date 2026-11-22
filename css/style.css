@@ -75,6 +75,14 @@ h2 {
     background-color: var(--color-primario); /* Opcional si querés darle fondo al header */
 }
 
+.header__tienda {
+    display: grid;
+    align-items: center;        /* Centra verticalmente el logo y el texto */
+    justify-content: center;    /* Centra el bloque entero en la pantalla */
+    padding: 1rem;
+    background-color: var(--color-primario); /* Opcional si querés darle fondo al header */
+}
+
 .hero h1 {
     font-family: var(--font-heading);
     font-weight: 700; /* Nunito Bold */
@@ -306,6 +314,60 @@ h2 {
 .integrante__boton:hover {
     background-color: var(--color-primario);
 }
+
+
+.integrante__foto-wrap {
+    position: relative;           /* el globito se ubica respecto a la foto */
+    width: 50%;
+    align-self: center;
+    margin: 2%;
+}
+
+.integrante__foto-wrap .integrante__imagen {
+    width: 100%;
+    margin: 0;
+    display: block;
+}
+
+/* el globito */
+.integrante__tooltip {
+    position: absolute;
+    top: calc(100% + 8px);        /* debajo de la foto, la flechita toca su borde */
+    left: 85%;                    /* respaldo; el JS (ajustarTooltip) calcula la posición real */
+    padding: 0.7rem;
+    background-color:  rgba(238, 232, 232, 0.95);
+    color: var(--color-primario);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* font-size: 0.15rem; */
+    text-align: left;
+    z-index: 10;                  /* por encima del nombre, la carrera, etc. */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* la flechita que apunta a la esquina inferior derecha de la foto */
+.integrante__tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: var(--flecha-x, 12px);  /* el JS la ubica justo en la esquina */
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: rgba(238, 232, 232, 0.9); /* mismo color que el globito */
+}
+
+/* mostrar al pasar el mouse por la foto (o al tocarla en el celular) */
+.integrante__foto-wrap:hover .integrante__tooltip,
+.integrante__foto-wrap:focus-within .integrante__tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .integrantes__grilla {
@@ -571,6 +633,28 @@ h2 {
     pointer-events: none;             /* Evita que interfiera con los clics del enlace */
 }
 
+/* Numerito rojo arriba a la derecha del carrito de la tienda */
+#contador-carrito {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    min-width: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background-color: #e03131;
+    color: var(--color-blanco);
+    font-size: 0.70rem;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Si el carrito esta vacio, el span queda sin texto y lo ocultamos */
+#contador-carrito:empty {
+    display: none;
+}
+
 
 /* ==========================================================================
    BLOQUE: cosaas del carrito
@@ -676,3 +760,216 @@ h2 {
     font-family: var(--font-body);
     color: var(--color-primario);
 }
+
+
+
+  /* ============================================================
+    PARA API PRODUCTOS EMPRENDIMIENTO LUISA
+     MAIN + GRILLA DE PRODUCTOS
+     Este es el flexbox mas importante del ejercicio:
+     flex-wrap: wrap  => las cards bajan de linea solas.
+     ============================================================ */
+  main {
+    padding-bottom: 50px;
+    flex: 1;                  /* empuja el footer al final de la pantalla */
+    width: 100%;              /* sin esto, main.contenedor se achica al ser hijo de un flex */
+  }
+
+  .titulo-seccion {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 1rem;
+  }
+
+  .grilla-productos {
+    display: flex;
+    flex-wrap: wrap;          /* si no entran, pasan a la fila de abajo */
+    gap: 25px;                /* separacion entre cards */
+    justify-content: center;
+  }
+
+  /* flex: crecer | achicarse | ancho base
+     Con 320px de base entran 3 por fila en pantalla grande,
+     2 en tablet y 1 en celular. */
+  .card {
+    flex: 0 1 220px;
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    overflow: hidden;         /* recorta la imagen a las esquinas redondeadas */
+    display: flex;
+    flex-direction: column;   /* imagen arriba, texto abajo (en columna) */
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;      /* las fotos de la API tienen distintos tamaños: se ven enteras */
+    padding: 10px;
+    background: white;
+    display: block;
+  }
+
+  /* Las descripciones de la API son largas: mostramos solo 3 lineas */
+  .card-info p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
+
+  /* Mensaje de "Cargando..." o de error en la grilla */
+  .mensaje-grilla {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    color: #555;
+  }
+
+  .card-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;                  /* ocupa el espacio sobrante: cards parejas */
+  }
+
+  .categoria {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-acento);
+    letter-spacing: 1px;
+  }
+
+  .card h3 {
+    font-size: 0.8rem;
+  }
+
+  .precio {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-secundario);
+    margin-top: auto;         /* empuja el precio al fondo de la card */
+  }
+
+  .card button {
+    background: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .card button:hover {
+    background:var(--color-secundario);
+  }
+
+
+  /* ============================================================
+     8) PAGINA FINALIZAR COMPRA
+     Dos columnas con flex: carrito a la izquierda, datos a la derecha.
+     ============================================================ */
+  .bloque-checkout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-start;
+  }
+
+  .resumen-carrito,
+  .formulario-compra {
+    flex: 1 1 320px;
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 25px;
+  }
+
+  .resumen-carrito h3,
+  .formulario-compra h3 {
+    color: var(--color-secundario);
+    margin-bottom: 15px;
+  }
+
+  /* Cada fila del carrito: nombre | cantidad | precio | boton */
+  .item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
+  }
+
+  .item-nombre {
+    flex: 1;                  /* el nombre ocupa todo el espacio que sobra */
+  }
+
+  .item-precio {
+    font-weight: bold;
+  }
+
+  .item-carrito button {
+    background: none;
+    border: none;
+    color: var(--color-secundario);
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .carrito-vacio a {
+    color:var(--color-secundario);
+  }
+
+  .total {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0 15px;
+    color: var(--color-primario);
+  }
+
+  .boton-secundario {
+    background: none;
+    border: 1px solid #C94F4F;
+    color: #C94F4F;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+    .boton-finalizar {
+    background: none;
+    border: 1px solid #0b8856;
+    color: #0b8856;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .formulario-compra label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .formulario-compra input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  .formulario-compra .boton {
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+  }
