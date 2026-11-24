@@ -172,12 +172,9 @@ Formulario funcional que envía los datos a través de **Formspree**.
 
 ---
 
-## 12. Pendientes y mejoras futuras
+## 12. Bonus Track
 
-- Consumir los datos de residentes desde una **API REST con `fetch`** (por ejemplo, un archivo JSON), en lugar del array local.
-- Agregar una sección de **reseñas** organizada con **Grid**.
-- Sumar **metaetiquetas SEO** (`description`, `keywords`).
-- Validar el formulario también con JavaScript (campos requeridos y formato de correo).
+- En rama "rama_api" se usa una **API REST con `fetch`**, en lugar del array local.
 
 ---
 
