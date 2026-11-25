@@ -35,12 +35,19 @@ function mostrarResidentes() {
         tarjeta.classList.add("integrante");
 
         const nombre = residente.nombre || "Residente sin nombre";
+        const descripcion = residente.descripcion || "Sin descripción";
+
         const htmlImagen = residente.foto
             ? `<img src="${residente.foto}" alt="Foto de ${nombre}" class="integrante__imagen">`
             : `<div class="integrante__imagen integrante__imagen--sin-foto" aria-hidden="true">${nombre.charAt(0)}${residente.apellido.charAt(0)}</div>`;
 
         tarjeta.innerHTML = `
-            ${htmlImagen}
+           <div class="integrante__foto-wrap" tabindex="0">
+                ${htmlImagen}
+                <div class="integrante__tooltip">
+                    <p style="font-size: 0.55rem;">${descripcion}</p>
+                </div>
+            </div>
             <h3 class="integrante__nombre">${nombre} ${residente.apellido}</h3>
             <p class="integrante__carrera">${residente.carrera_base}</p>
             <p class="integrante__anio">Año de ingreso: ${residente.anio_ingreso}</p>
@@ -53,7 +60,32 @@ function mostrarResidentes() {
         boton.addEventListener("click", () => carrito.agregar(residente, boton)); // sin llamada duplicada
 
         grilla.appendChild(tarjeta);
+        ajustarTooltip(tarjeta.querySelector(".integrante__tooltip"));
     });
+}
+
+// Ajusta el globito de la descripción:
+// 1) ancho en proporción 2:1 (ancho = 2 × alto) según lo que ocupe el texto
+// 2) lo ubica saliendo de la esquina inferior derecha de la foto,
+//    corriéndolo a la izquierda si se pasaría del borde de la tarjeta
+function ajustarTooltip(tooltip) {
+    let ancho = 200;                              // valor inicial cualquiera
+    for (let i = 0; i < 4; i++) {
+        tooltip.style.width = ancho + "px";
+        const alto = tooltip.offsetHeight;        // cuánto ocupa el texto con ese ancho
+        ancho = Math.round(Math.sqrt(2 * ancho * alto));
+    }
+    tooltip.style.width = ancho + "px";
+
+    const foto = tooltip.parentElement;           // .integrante__foto-wrap
+    const tarjeta = foto.parentElement;           // .integrante
+    const esquina = foto.offsetWidth;             // borde derecho de la foto
+    const margen = 8;
+    const maxLeft = tarjeta.clientWidth - margen - foto.offsetLeft - ancho;
+    const left = Math.min(esquina - 16, maxLeft);
+
+    tooltip.style.left = left + "px";
+    tooltip.style.setProperty("--flecha-x", (esquina - left - 4) + "px"); // la flechita queda en la esquina
 }
 
 // Cambia el botón con una clase en vez de estilo inline 

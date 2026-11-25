@@ -6,6 +6,7 @@ Proyecto final del curso de **Front-End** de **Talento Tech**.
 
 - **Repositorio:** https://github.com/LuisaBeccar/TalentTechFrontEnd
 - **Sitio publicado (GitHub Pages):** https://luisabeccar.github.io/TalentTechFrontEnd/
+- **Rama actual:** `rama_api`. Agrega una segunda tienda, **Emprendimiento Lui**, que trae sus productos desde una **API REST con `fetch`**.
 
 ---
 
@@ -23,6 +24,8 @@ El componente de *e-commerce* pedido por la consigna se adaptó al contexto de l
 | Total de la compra | Suma de meses de experiencia del equipo |
 | Finalizar compra | Página `ver_carrito.html` y botón «Llamar Dream Team» |
 
+Además, para cubrir el consumo de una API, la rama `rama_api` agrega **Emprendimiento Lui** (`emprendimiento_lui.html`): una tienda ficticia con productos traídos desde [Fake Store API](https://fakestoreapi.com/products), con precios, cantidades y checkout.
+
 ---
 
 ## 2. Estructura de archivos
@@ -31,24 +34,31 @@ El componente de *e-commerce* pedido por la consigna se adaptó al contexto de l
 TalentTechFrontEnd/
 ├── index.html              # Página principal
 ├── ver_carrito.html        # Resumen del Dream Team elegido
+├── emprendimiento_lui.html # Tienda con productos traídos por API (rama_api)
+├── how_to_ramas.txt        # Apuntes para trabajar con ramas de Git
 ├── css/
-│   └── style.css           # Hoja de estilos (metodología BEM)
+│   └── style.css           # Hoja de estilos (BEM + estilos de la tienda)
 ├── js/
 │   ├── lista_residentes.js # Datos: array de objetos "residentes"
-│   ├── index.js            # Render de tarjetas, carrito y localStorage
+│   ├── index.js            # Render de tarjetas, carrito y localStorage (Dream Team)
+│   ├── productos.js        # fetch a la API y render de productos (tienda)
+│   ├── carrito.js          # Funciones del carrito de la tienda y localStorage
+│   ├── finalizar.js        # Resumen del carrito y confirmación de compra
 │   └── ejercicios.js       # Ejercicios de práctica del curso
 └── multimedia/             # Fotos, logo, programa (PDF), gracias.html, dream_team.jpg
 ```
+
+En `emprendimiento_lui.html` el orden de los scripts importa: primero va `carrito.js`, porque `productos.js` y `finalizar.js` usan sus funciones.
 
 ---
 
 ## 3. Estructura HTML semántica
 
-Ambas páginas se organizan con las etiquetas semánticas principales:
+Las páginas se organizan con las etiquetas semánticas principales:
 
-- `<nav>`: menú fijo (*sticky*) con enlaces a Inicio, Nosotrxs, Programa (PDF), Rotaciones, Contacto y Dream Team. El ícono de estrella del Dream Team muestra un contador con la cantidad de residentes seleccionados.
-- `<header>`: logo y nombre completo de la residencia.
-- `<main>`: presentación institucional (Canva embebido), sección **Quiénes somos** con las tarjetas de residentes y el carrito, tabla de **Rotaciones**, **formulario de contacto** y mapa.
+- `<nav>`: menú fijo (*sticky*) con enlaces a Inicio, Nosotrxs, Programa (PDF), Rotaciones, Contacto, Dream Team y **Emprendimiento Lui**. En la tienda, el menú tiene un solo enlace para volver al sitio de la RIGIS. El ícono de estrella del Dream Team muestra un contador con la cantidad de residentes seleccionados.
+- `<header>`: logo y nombre completo de la residencia (en `index.html`) o título y descripción de la tienda (en `emprendimiento_lui.html`). `ver_carrito.html` ya no lleva header.
+- `<main>`: presentación institucional (Canva embebido), sección **Quiénes somos** con las tarjetas de residentes y el carrito, tabla de **Rotaciones**, **formulario de contacto** y mapa. En la tienda: grilla de productos y bloque de checkout.
 - `<section>` y `<article>`: agrupan cada bloque de contenido.
 - `<footer>`: enlace a Instagram, contacto con el desarrollador y derechos.
 
@@ -63,6 +73,7 @@ Archivo externo `css/style.css`, organizado por bloques con la metodología **BE
 - **Íconos:** Font Awesome.
 - **Background:** color de fondo general, fondo de marca en el header, menú y footer con el color de acento, y fondos suaves en los ítems del carrito.
 - Estilos aplicados a header, menú de navegación, tarjetas, tabla, formulario, carrito y footer.
+- **Tienda:** estilos propios para las tarjetas de producto (`.card`, con efecto *hover*), etiqueta de categoría, precio, ítems del carrito, total y botones para vaciar el carrito y confirmar la compra.
 
 ---
 
@@ -70,6 +81,9 @@ Archivo externo `css/style.css`, organizado por bloques con la metodología **BE
 
 - **Tarjetas de residentes:** contenedor con **Flexbox** y scroll horizontal (`overflow-x: auto` con `scroll-snap`), que muestra a todos los integrantes alineados dentro de los márgenes de la página.
 - **Header y menú:** **Flexbox** para alinear el logo con el título y distribuir los enlaces.
+- **Tienda, productos:** grilla con **Flexbox** y `flex-wrap`, que acomoda las tarjetas en filas según el ancho de la pantalla.
+- **Tienda, checkout:** dos columnas con **Flexbox** (carrito y datos del comprador) que se apilan en pantallas chicas.
+- **Header de la tienda:** **Grid** para centrar el título y la descripción.
 - **Contacto:** **Grid** de dos columnas (formulario y mapa) que pasa a una sola columna en pantallas chicas.
 - **Media Queries** (`max-width: 768px`) para ajustar tamaños de texto, imágenes, menú, tabla y formulario en celulares.
 
@@ -142,7 +156,37 @@ Formulario funcional que envía los datos a través de **Formspree**.
 
 ---
 
-## 9. Flujo de uso
+## 9. Tienda «Emprendimiento Lui» (consumo de API)
+
+### Pedido a la API (`productos.js`)
+
+- `cargarProductos()` hace un `fetch` a `https://fakestoreapi.com/products`, controla `respuesta.ok`, convierte la respuesta con `.json()` y pasa los campos al español con `map` (`title` → `nombre`, `price` → `precio`, `image` → `imagen`, `category` → `categoria`, `description` → `descripcion`).
+- Mientras espera, `mostrarCargando()` muestra un spinner. Si la API falla, `mostrarError()` muestra un mensaje y el error se registra en la consola (`.catch`).
+- `mostrarProductos()` dibuja una tarjeta por producto con imagen, categoría, nombre, descripción, precio y botón «Agregar al carrito».
+
+### Carrito de la tienda (`carrito.js`)
+
+| Función | Qué hace |
+|---|---|
+| `obtenerCarrito()` / `guardarCarrito()` | Leen y guardan el carrito en `localStorage` bajo la clave `carrito`. |
+| `agregarProducto(id)` | Agrega el producto, o le suma 1 a la cantidad si ya estaba. Muestra un *toast* de SweetAlert2. |
+| `eliminarProducto(id)` | Quita el producto con todas sus unidades. |
+| `vaciarCarrito()` | Deja el carrito vacío. |
+| `calcularTotal()` | Suma precio × cantidad de cada producto. |
+| `contarProductos()` / `actualizarContador()` | Cuentan las unidades y actualizan el numerito rojo sobre el ícono «Carrito» del menú (se oculta si el carrito está vacío). |
+| `formatearPrecio(numero)` | Da formato de moneda argentina (`$1.109,50`) con `toLocaleString("es-AR")`. |
+
+### Checkout (`finalizar.js`)
+
+- `mostrarCarrito()` lista cada producto con su cantidad, su subtotal y un botón para quitarlo, y muestra el total. Si el carrito está vacío, muestra un mensaje con un enlace a los productos.
+- `finalizarCompra()` comprueba que haya productos y que estén completos el nombre y el email. Si está todo bien, guarda el total, vacía el carrito y muestra un cartel de agradecimiento con **SweetAlert2**.
+
+---
+
+## 10. Flujo de uso
+
+**En el sitio de la RIGIS:**
+
 
 1. En **Quiénes somos**, el usuario agrega residentes con el botón de cada tarjeta (máximo 3). Vuelve a hacer clic para quitarlos.
 2. La lista **Mi Selección** y el contador de la estrella se actualizan al instante.
@@ -150,9 +194,16 @@ Formulario funcional que envía los datos a través de **Formspree**.
 4. Con **Finalizar Selección** se abre `ver_carrito.html` en la misma pestaña, con el detalle de cada residente y la suma total de meses de experiencia.
 5. Con **Llamar Dream Team** se muestra la imagen final del equipo.
 
+**En Emprendimiento Lui:**
+
+1. Se entra desde el enlace **Emprendimiento Lui** del menú. Los productos se cargan desde la API.
+2. Con **Agregar al carrito** se suma el producto (o una unidad más) y el resumen de abajo se actualiza.
+3. En **Finalizar compra** se pueden quitar productos o vaciar el carrito.
+4. Se completan el nombre y el email y se pulsa **Confirmar compra**.
+
 ---
 
-## 10. Accesibilidad y SEO
+## 11. Accesibilidad y SEO
 
 - Texto alternativo (`alt`) en logo y fotos; `aria-hidden` en el círculo de iniciales decorativo.
 - Etiquetas `<label>` asociadas a cada campo del formulario.
@@ -161,21 +212,14 @@ Formulario funcional que envía los datos a través de **Formspree**.
 
 ---
 
-## 11. Tecnologías utilizadas
+## 12. Tecnologías utilizadas
 
 - HTML5
 - CSS3 (Flexbox, Grid, Media Queries, variables CSS, BEM)
-- JavaScript (DOM, eventos, `localStorage`, JSON)
-- Google Fonts, Font Awesome
-- Formspree, Canva, Google Maps
+- JavaScript (DOM, eventos, `localStorage`, JSON, `fetch` y promesas)
+- Google Fonts, Font Awesome, SweetAlert2
+- Formspree, Canva, Google Maps, Fake Store API
 - Git, GitHub y GitHub Pages
 
 ---
-
-## 12. Bonus Track
-
-- En rama "rama_api" se usa una **API REST con `fetch`**, en lugar del array local.
-
----
-
 © 2026 RIGIS Website · Proyecto Front-End · Talento Tech
